@@ -14,6 +14,7 @@
   "launch_studio": ["true", "false"],
   "_copy_without_render": [".gradle", "gradle/", "*gradlew", "*gradlew.bat"],
   "base_url": "https://simform.com",
+  "is_theme_enable": true,
   "splash_image_path": "Required",
   "__splash_asset_path": "assets/images/splash.{{cookiecutter.splash_image_path.split('.')[1]}}"
 }

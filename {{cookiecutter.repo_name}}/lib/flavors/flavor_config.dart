@@ -4,12 +4,13 @@ import '../flavors/flavor.dart';
 import '../flavors/flavor_values.dart';
 
 class FlavorConfig extends InheritedWidget {
-  FlavorConfig({
+  const FlavorConfig({
     required this.flavor,
     required this.values,
+    required super.child,
     super.key,
-    Widget? child,
-  }) : super(child: child!);
+  });
+
   final Flavor flavor;
 
   final FlavorValues values;

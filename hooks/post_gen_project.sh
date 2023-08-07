@@ -4,7 +4,7 @@ fetch_splash_image() {
   fileName=$(basename "{{ cookiecutter.splash_image_path }}")
   fileExtension=".${fileName##*.}"
 
-  # Removing existing splash image 
+  # Removing existing splash image
   rm -f "assets/images/splash.png"
 
   mv -f {{ cookiecutter.splash_image_path }} "assets/images/splash$fileExtension"
@@ -57,8 +57,17 @@ launch_studio() {
     fi                                                                      
 }
 
+check_theme_flag() {
+  # Remove theme related file if theme is not enabled
+  if [ "{{ cookiecutter.is_theme_enable }}" = False ]; then
+     rm -f "lib/values/app_theme.dart"
+     rm -f "lib/values/app_theme_store.dart"
+  fi
+}
+
 update_project_permissions
 fetch_splash_image
+check_theme_flag
 flutter pub get
 flutter pub global activate flutter_gen
 flutter pub run flutter_launcher_icons
@@ -68,8 +77,9 @@ pod install
 cd ..
 dart format lib
 initialize_git
-{ %- if cookiecutter.repo_link != "NA" -% }
+{%- if cookiecutter.repo_link != "NA" -%}
 connect_git_repo
-{ % endif % }
+{% endif %}
 git config core.hooksPath .githooks/
+update_project_permissions
 attempt_to_launch_studio
