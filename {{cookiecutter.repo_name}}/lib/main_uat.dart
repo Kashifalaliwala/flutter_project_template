@@ -41,4 +41,3 @@ class FlavoredApp extends StatelessWidget {
     );
   }
 }
-

@@ -5,9 +5,9 @@ import '../flavors/flavor_values.dart';
 
 class FlavorConfig extends InheritedWidget {
   FlavorConfig({
-    super.key,
     required this.flavor,
     required this.values,
+    super.key,
     Widget? child,
   }) : super(child: child!);
   final Flavor flavor;

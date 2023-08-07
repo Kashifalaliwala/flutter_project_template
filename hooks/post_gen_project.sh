@@ -42,11 +42,11 @@ launch_studio() {
 
 flutter pub get
 flutter pub global activate flutter_gen
-flutter pub run build_runner build --delete-conflicting-outputs
+dart run build_runner build --delete-conflicting-outputs
 cd ios/
 pod install
 cd ..
-flutter format lib
+dart format lib
 initialize_git
 {%- if cookiecutter.repo_link != "NA" -%}
 connect_git_repo

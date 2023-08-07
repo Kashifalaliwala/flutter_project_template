@@ -38,6 +38,4 @@ class FlavoredApp extends StatelessWidget {
       child: const AppConfig(),
     );
   }
-
 }
-
