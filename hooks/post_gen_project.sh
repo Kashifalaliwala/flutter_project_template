@@ -1,5 +1,22 @@
 #!/bin/bash
 
+fetch_splash_image() {
+  fileName=$(basename "{{ cookiecutter.splash_image_path }}")
+  fileExtension=".${fileName##*.}"
+
+  # Removing existing splash image 
+  rm -f "assets/images/splash.png"
+
+  mv -f {{ cookiecutter.splash_image_path }} "assets/images/splash$fileExtension"
+
+  # Check if the moved was successful
+  if [ $? -eq 0 ]; then
+      echo "File moved successfully."
+  else
+      echo "Error while moving the file."
+  fi
+}
+
 initialize_git() {
     git init
     git add -A
@@ -40,6 +57,8 @@ launch_studio() {
     fi                                                                      
 }
 
+update_project_permissions
+fetch_splash_image
 flutter pub get
 flutter pub global activate flutter_gen
 dart run build_runner build --delete-conflicting-outputs
@@ -52,5 +71,4 @@ initialize_git
 connect_git_repo
 {% endif %}
 git config core.hooksPath .githooks/
-update_project_permissions
 attempt_to_launch_studio
