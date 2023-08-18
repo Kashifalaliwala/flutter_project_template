@@ -66,12 +66,12 @@ check_theme_flag() {
 }
 
 update_project_permissions
-fetch_splash_image
 check_theme_flag
+fetch_splash_image
 flutter pub get
 flutter pub global activate flutter_gen
-flutter pub run flutter_launcher_icons
 dart run build_runner build --delete-conflicting-outputs
+dart run flutter_launcher_icons
 cd ios/
 pod install
 cd ..
@@ -81,5 +81,4 @@ initialize_git
 connect_git_repo
 {% endif %}
 git config core.hooksPath .githooks/
-update_project_permissions
 attempt_to_launch_studio
